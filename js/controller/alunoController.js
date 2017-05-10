@@ -6,6 +6,8 @@ angular.module("singlepageapp").controller("alunoController", function ($scope, 
 
     $scope.pagina= 1;
 
+    $scope.disci = [];
+
     $scope.irPara = function(caminho){
         $location.url(caminho);
     };
@@ -23,6 +25,9 @@ angular.module("singlepageapp").controller("alunoController", function ($scope, 
 
         APIService.listarAluno().then(sucesso,erro);
     };
+
+
+
 //--------------------------------------------------------------
     $scope.proxPag = function(pagina){
         $scope.pagina = pagina+1;
@@ -52,6 +57,29 @@ angular.module("singlepageapp").controller("alunoController", function ($scope, 
 
 
 //--------------------------------------------------
+
+    $scope.listarAlunosPorCurso = function (curso) {
+        //alert(curso);
+        var sucesso = function (dados) {
+            $scope.aul = dados.data;
+        };
+
+        var erro = function (err) {
+            alert("Erro ao listar os alunos");
+        };
+
+        APIService.listarAlunoPorCurso(curso).then(sucesso,erro);
+
+    }
+
+
+
+
+
+
+
+
+
     $scope.salvarAluno = function(aluno){
 
         APIService.salvarAluno(aluno).then(function(aluno){

@@ -9,11 +9,12 @@
         <span class="glyphicon glyphicon-plus"></span>
         Adicionar
     </button>
-<center>
-    <select>
-        <option ng-repeat="curso in curs" ng-model="disciplina.curso">{{curso.nome}}</option>
-    </select>
-</center>
+    <center>
+        <select name="curso" ng-model="curso" ng-change="listarDisciplinaPorCurso(curso)">
+            <option value="">Selecione o Curso</option>
+            <option ng-repeat="curso in curs" value="{{curso.id}}">{{curso.nome}}</option>
+        </select>
+    </center>
 
         <button style="float: right" class="btn btn-sm btn-primary" href="" ng-click="proxPag(pagina)"><span aria-hidden="true"> > </span></button>
 

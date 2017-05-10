@@ -11,10 +11,9 @@
     </button>
 
     <center>
-        <select>
-
-            <option ng-repeat="curso in curs|filter:curso.nome" ng-model="curso.disciplina">{{curso.nome}}
-            </option>
+        <select name="curso" ng-model="curso" ng-change="listarAlunosPorCurso(curso)">
+            <option value="">Selecione o Curso</option>
+            <option ng-repeat="curso in curs" value="{{curso.id}}">{{curso.nome}}</option>
         </select>
     </center>
 

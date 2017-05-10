@@ -7,6 +7,13 @@ angular.module("singlepageapp")
             templateUrl: "view/home.html",
             controller: "homeController"
         });
+        $routeProvider.when("/cadastroDeMatricula", {
+            templateUrl: "view/cadastro-de-Matricula.html",
+            controller: "homeController"
+        });
+
+
+
         $routeProvider.when("/cadastroDeCurso", {
             templateUrl: "view/cadastro-de-curso.html",
             controller: "Controller"

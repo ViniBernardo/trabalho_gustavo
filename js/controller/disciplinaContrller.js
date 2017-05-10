@@ -33,6 +33,21 @@ angular.module("singlepageapp").controller("disciplinaContrller", function ($sco
         });
     }
 
+    $scope.listarDisciplinaPorCurso = function (curso) {
+        //alert(curso);
+        var sucesso = function (dados) {
+            $scope.disci = dados.data;
+        };
+
+        var erro = function (err) {
+            alert("Erro ao listar as disciplinas");
+        };
+
+        APIService.listarDisciplinaPorCurso(curso).then(sucesso,erro);
+
+    }
+
+
     $scope.proxPag = function(pagina){
         $scope.pagina = pagina+1;
         APIService.listarDisciplinaPorPagina($scope.pagina).then(function(dados){

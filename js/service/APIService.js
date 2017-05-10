@@ -23,6 +23,27 @@ angular.module("singlepageapp").factory("APIService",
     };
 
 
+
+        var _listarSemestre = function () {
+            return $http ({
+                method:"GET",
+                url:"http://siscadcpwiv.herokuapp.com/semestre/list",
+            })
+        }
+
+        var _listarAlunoPorCurso = function (id) {
+            return $http({
+                method: "GET",
+                url: " http://siscadcpwiv.herokuapp.com/aluno/curso/"+id
+            });
+        };
+        var _listarDisciplinaPorCurso = function (id) {
+            return $http({
+                method: "GET",
+                url: " http://siscadcpwiv.herokuapp.com/disciplina/curso/"+id
+            });
+        };
+
     var _salvarCurso = function(dados){
         return $http({
             method:"POST",
@@ -30,6 +51,13 @@ angular.module("singlepageapp").factory("APIService",
             data:dados
             });
     };
+
+        var _listarMatriculados = function (semestre,disciplina) {
+            return $http ({
+                method:"GET",
+                url:"http://siscadcpwiv.herokuapp.com/matricula/semestre/disciplina/"+semestre+"/"+disciplina,
+            })
+        };
 
     var _salvarDisciplina = function(dados){
             return $http({
@@ -72,7 +100,13 @@ angular.module("singlepageapp").factory("APIService",
                 url: "http://siscadcpwiv.herokuapp.com/aluno/curso/"+id,
             });
     };
-
+        var _salvarMatriculas = function (dados) {
+            return $http({
+                method:"POST",
+                url:"http://siscadcpwiv.herokuapp.com/matricula/",
+                data:dados
+            });
+        };
 
 
 
@@ -95,9 +129,14 @@ angular.module("singlepageapp").factory("APIService",
             salvarCurso: _salvarCurso,
             salvarDisciplina: _salvarDisciplina,
             salvarAluno: _salvarAluno,
+            listarAlunoPorCurso: _listarAlunoPorCurso,
+            listarDisciplinaPorCurso: _listarDisciplinaPorCurso,
+            listarSemestres : _listarSemestre,
             buscarAlunoPorCurso : _buscarAlunoPorCurso,
             listarAlunoPorPagina : _listarAlunoPorPagina,
             listarCursoPorPagina : _listarCursoPorPagina,
-            listarDisciplinaPorPagina : _listarDisciplinaPorPagina
+            listarDisciplinaPorPagina : _listarDisciplinaPorPagina,
+            listarMatriculados : _listarMatriculados,
+            salvarMatriculas : _salvarMatriculas
         }
 });

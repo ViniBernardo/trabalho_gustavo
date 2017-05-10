@@ -1,0 +1,115 @@
+<br>
+<div class="container-fluid">
+    <div class="page-header">
+        <h2> Matricula</h2>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4">
+
+    <center>
+        <select name="curso" ng-model="curso" ng-change="listarDisciplinaPorCurso(curso)">
+            <option value="" selected="selected"> Selecione um curso </option>
+            <option ng-repeat="curso in curs" value="{{curso.id}}">{{curso.nome}}</option>
+        </select>
+
+    </center>
+
+<br>
+            <table class="table">
+                <thead>
+                <tr>
+
+                    <th>
+                        <label>Nome</label>
+                    </th>
+
+                    <th>
+                        <label>CPF</label>
+                    </th>
+                    <th>
+                        <label>Matricular</label>
+                    </th>
+
+
+
+
+                </tr>
+                </thead>
+
+                <tbody ng-repeat="aluno in aul">
+                <tr>
+                    <td>{{aluno.nome}}</td>
+                    <td>{{aluno.cpf}}</td>
+                    <td><input type="checkbox" ng-model="alunosMatricular" ng-checked="marcado(aluno)" ng-click="checkBox(aluno)"></td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+<div class="col-lg-4">
+
+<center>
+
+    <button style="float: ri" class="btn btn-sm btn-primary" ng-click="matricular(alunosMatricular)" value="Send"><span aria-hidden="true"> > > </span></button>
+</center>
+</div>
+
+
+<div class="col-lg-4">
+
+
+    <center>
+        <select name="disciplina" ng-model="disciplina" ng-change="listarAlunoPorCurso(curso)" ng-click="listarSemestre()">
+            <option value="">Selecione uma Disciplina</option>
+            <option ng-repeat="disciplina in disci" value="{{disciplina.id}}">{{disciplina.nome}}</option>
+        </select>
+    </center>
+    <br>
+
+    <center>
+        <select name="semestre" ng-model="semestre" ng-change="listarMatriculados(semestre,disciplina)" >
+            <option value="">Selecione o Semestre</option>
+            <option ng-repeat="semestre in semestres" value="{{semestre.id}}">{{semestre.descricao}}</option>
+        </select>
+    </center>
+    <br>
+
+
+    <br>
+    <table class="table">
+        <thead>
+        <tr>
+
+
+
+            <th>
+                <label>Nome</label>
+            </th>
+
+            <th>
+                <label>CPF</label>
+            </th>
+
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="al in alunosParaCadastro">
+            <td>{{al.nome}}</td>
+            <td>{{al.cpf}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <button class="btn btn-success" ng-disabled="!semestre" style="margin-left: 24%; margin-top: 15%"
+            ng-click="cadastrarAluno(disciplina,semestre)">Efetuar Matricula</button>
+</div>
+
+
+
+
+</div>
+</div>
